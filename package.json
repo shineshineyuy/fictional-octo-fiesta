@@ -1,0 +1,134 @@
+{
+	"name": "add-data-api-builder",
+	"displayName": "DAB Add (Data API Builder)",
+	"description": "Adds entities to a Data API Builder configuration file.",
+	"publisher": "jerry-nixon",
+	"version": "0.0.2",
+	"icon": "images/icon.png",
+	"engines": {
+		"vscode": "^1.95.0"
+	},
+	"galleryBanner": {
+		"color": "#0078d7",
+		"theme": "dark",
+		"background": "images/dab-logo.png"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/JerryNixon/data-api-builder-vscode-ext.git"
+	},
+	"categories": [
+		"Other",
+		"Programming Languages",
+		"Debuggers"
+	],
+	"activationEvents": [
+		"workspaceContains:**/dab-*.json",
+		"workspaceContains:**/staticwebapp.database.config.json"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "dabExtension.addTable",
+				"title": "Table"
+			},
+			{
+				"command": "dabExtension.addView",
+				"title": "View"
+			},
+			{
+				"command": "dabExtension.addProc",
+				"title": "Stored Procedure"
+			},
+			{
+				"command": "dabExtension.addRelationship",
+				"title": "Relationship"
+			}
+		],
+		"submenus": [
+			{
+				"id": "dabExtension.addSubMenu",
+				"label": "DAB Add"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"submenu": "dabExtension.addSubMenu",
+					"when": "(resourceFilename =~ /^dab-.*\\.json$/) || resourceFilename == 'staticwebapp.database.config.json'",
+					"group": "1_dab"
+				}
+			],
+			"dabExtension.addSubMenu": [
+				{
+					"command": "dabExtension.addTable",
+					"group": "1_add@1"
+				},
+				{
+					"command": "dabExtension.addView",
+					"group": "1_add@2"
+				},
+				{
+					"command": "dabExtension.addProc",
+					"group": "1_add@3"
+				},
+				{
+					"command": "dabExtension.addRelationship",
+					"group": "1_add@4"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src",
+		"test": "vscode-test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^10.0.9",
+		"@types/mssql": "^9.1.5",
+		"@types/node": "20.x",
+		"@types/vscode": "^1.95.0",
+		"@typescript-eslint/eslint-plugin": "^8.10.0",
+		"@typescript-eslint/parser": "^8.7.0",
+		"@vscode/test-cli": "^0.0.10",
+		"@vscode/test-electron": "^2.4.1",
+		"eslint": "^9.13.0",
+		"typescript": "^5.6.3"
+	},
+	"keywords": [
+		"Data API Builder",
+		"dab",
+		"configuration",
+		"json",
+		"tools",
+		"automation"
+	],
+	"author": "Jerry Nixon",
+	"license": "MIT",
+	"dependencies": {
+		"@azure/cosmos": "^4.2.0",
+		"dotenv": "^16.4.5",
+		"mssql": "^11.0.1",
+		"mysql2": "^3.11.4",
+		"pg": "^8.13.1"
+	},
+	"__metadata": {
+		"id": "898bb9bc-d044-4d57-8e42-a1faa8a4ad5b",
+		"publisherId": "c2923259-07f7-41f7-a480-84a04eab9425",
+		"publisherDisplayName": "Developer Experiences",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"isPreReleaseVersion": false,
+		"hasPreReleaseVersion": false,
+		"installedTimestamp": 1734486451574,
+		"pinned": false,
+		"preRelease": false,
+		"source": "gallery",
+		"size": 18107396
+	}
+}
